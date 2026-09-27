@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic Dev Team — Agent Descriptions</title>
+<style>
+  :root {
+    --blue:    #0070d2;
+    --teal:    #006e71;
+    --green:   #2e7d32;
+    --purple:  #5c35a8;
+    --orange:  #c25e00;
+    --red:     #b71c1c;
+    --bg:      #f8f9fa;
+    --surface: #ffffff;
+    --border:  #d9d9d9;
+    --text:    #1a1a1a;
+    --muted:   #555555;
+    --code-bg: #eef1f5;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--bg);
+    padding: 2rem 1rem;
+  }
+
+  .page {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  /* ── Typography ─────────────────────────────────────── */
+  h1 {
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 1.8rem 0 0.6rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  p { margin-bottom: 0.9rem; }
+
+  .intro {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+  }
+
+  code {
+    background: var(--code-bg);
+    border: 1px solid #d0d5dd;
+    border-radius: 4px;
+    padding: 0.1em 0.38em;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.85em;
+    white-space: nowrap;
+  }
+
+  blockquote {
+    border-left: 4px solid var(--blue);
+    background: #e8f1fb;
+    padding: 0.7rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.93rem;
+    color: var(--muted);
+  }
+
+  /* ── Agent cards ────────────────────────────────────── */
+  .agent-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.6rem 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+
+  .agent-card h2 {
+    margin-top: 0;
+    border-bottom-color: currentColor;
+    border-bottom-width: 2px;
+  }
+
+  .agent-card.orchestrator h2 { color: var(--blue); }
+  .agent-card.architect   h2 { color: var(--teal); }
+  .agent-card.builder     h2 { color: var(--green); }
+  .agent-card.qa          h2 { color: var(--purple); }
+  .agent-card.shipper     h2 { color: var(--orange); }
+  .agent-card.sentinel    h2 { color: var(--red); }
+
+  .agent-card ol {
+    padding-left: 1.4rem;
+    margin: 0;
+  }
+
+  .agent-card ol li {
+    margin-bottom: 0.55rem;
+    padding-left: 0.2rem;
+  }
+
+  .agent-card ol li strong {
+    color: var(--text);
+  }
+
+  /* ── Tables ─────────────────────────────────────────── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    margin: 1rem 0 1.5rem;
+    background: var(--surface);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,.07);
+  }
+
+  th {
+    background: #f0f3f7;
+    font-weight: 600;
+    text-align: left;
+    padding: 0.6rem 0.85rem;
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+
+  td {
+    padding: 0.55rem 0.85rem;
+    border-bottom: 1px solid #ebebeb;
+    vertical-align: top;
+  }
+
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f7f9fc; }
+
+  /* center columns for the matrix table */
+  .matrix th:not(:first-child):not(:nth-child(2)),
+  .matrix td:not(:first-child):not(:nth-child(2)) {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .check { color: #2e7d32; font-size: 1.1em; }
+  .dash  { color: #aaa; }
+
+  /* agent-header pills in matrix */
+  .matrix th.orch   { color: var(--blue); }
+  .matrix th.arch   { color: var(--teal); }
+  .matrix th.build  { color: var(--green); }
+  .matrix th.qa     { color: var(--purple); }
+  .matrix th.ship   { color: var(--orange); }
+  .matrix th.sntl   { color: var(--red); }
+
+  /* ── Section containers ─────────────────────────────── */
+  .section-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.4rem 2rem 0.6rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+  }
+
+  .section-box h2 { margin-top: 0; }
+
+  /* ── Key label ─────────────────────────────────────── */
+  .table-key {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: -0.5rem 0 0.6rem;
+  }
+
+  /* ── Diagrams ───────────────────────────────────────── */
+  .diagram-wrap {
+    margin: 1.6rem 0 0.4rem;
+    overflow-x: auto;
+  }
+
+  .diag-box {
+    border-radius: 8px;
+    border: 2px solid;
+    padding: 10px 14px;
+    text-align: center;
+    background: var(--surface);
+  }
+  .diag-title { font-weight: 700; font-size: 0.88rem; }
+  .diag-sub   { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+  .diag-code  {
+    font-family: "SFMono-Regular", Consolas, monospace; font-size: 0.72rem;
+    background: #eef1f5; border-radius: 3px; padding: 1px 5px;
+    display: inline-block; margin-top: 4px;
+  }
+
+  .dc-orch   { border-color: #6d28d9; background: #f5f3ff; }
+  .dc-arch   { border-color: var(--teal);   background: #e6f4f4; }
+  .dc-build  { border-color: var(--blue);   background: #e8f1fb; }
+  .dc-qa     { border-color: var(--purple); background: #f0ebff; }
+  .dc-ship   { border-color: var(--orange); background: #fff4e5; }
+  .dc-sent   { border-color: var(--red);    background: #fdeaea; }
+  .dc-user   { border-color: #334155; background: #f1f5f9; }
+  .dc-github { border-color: #0f172a; background: #f1f5f9; }
+  .dc-skill  { border-color: #64748b; background: #f8fafc; }
+  .dc-plugin { border-color: #d97706; background: #fffbeb; }
+
+  .darr { width: 2px; height: 28px; background: #64748b; position: relative; flex-shrink: 0; margin: 0 auto; }
+  .darr::after { content:''; position:absolute; bottom:-1px; left:-4px; border:5px solid transparent; border-top-color:#64748b; border-bottom:none; }
+  .rarr { width: 36px; height: 2px; background: #64748b; position: relative; flex-shrink: 0; }
+  .rarr::after { content:''; position:absolute; right:-1px; top:-4px; border:5px solid transparent; border-left-color:#64748b; border-right:none; }
+
+  .diag-caption { font-size: 0.82rem; color: var(--muted); margin-top: 0.7rem; max-width: 760px; }
+  .diag-io-label { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 3px; }
+  .diag-col-hdr  { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 6px; text-align: center; }
+
+  .phase-diag-wrap { display: flex; align-items: flex-start; gap: 28px; }
+  .phase-diag-io   { display: flex; flex-direction: column; gap: 8px; width: 180px; }
+  .phase-diag-iobox { width: 180px; padding: 8px 10px; text-align: left; font-size: 0.78rem; }
+  .phase-diag-skills { display: flex; flex-direction: column; gap: 6px; width: 190px; }
+  .phase-diag-skill  { width: 190px; padding: 7px 10px; text-align: left; }
+  .phase-diag-agent  { width: 200px; padding: 14px; }
+
+  .diag-feedback-row { margin-top: 12px; display: flex; gap: 12px; align-items: center; font-size: 0.78rem; flex-wrap: wrap; }
+  .diag-fb-red  { border-color: #b71c1c !important; background: #fdeaea !important; padding: 5px 10px; font-size: 0.75rem; }
+  .diag-fb-blue { border-color: #0070d2 !important; background: #e8f1fb !important; padding: 5px 10px; font-size: 0.75rem; border-style: dashed !important; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <h1>My Dev Team — Agent Descriptions</h1>
+  <p class="intro">A 6-agent personal team for Claude Code covering the full Salesforce/Agentforce DevOps Lifecycle (ADLC), from design through production monitoring. Say <strong>"My Dev Team"</strong> to Claude Code and it routes your request through the right agent, or sequence of agents, instead of working ad hoc, with <strong>The Orchestrator Agent</strong> taking the lead to work with you and coordinate the other 5 agents.</p>
+  <p class="intro" style="margin-top:0.75rem;">Each agent has a <strong>"The … Agent" display name</strong> (The Architect Agent, The Builder Agent, and so on) and <strong>announces itself when it works</strong>, so you always see which teammate is active. Each one <strong>plans, executes, and self-corrects</strong> — it states what it's about to do, does it, and checks its own output against the phase gate before handing off. And because Claude Code can run <strong>multiple agents at the same time</strong>, the team fans out genuinely independent work in parallel to move faster, while keeping the phase gates intact.</p>
+  <p class="intro" style="margin-top:0.75rem;">Use the descriptions below as a reference for understanding what each agent does, what it receives and produces, and how the team fits together.</p>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════════════
+       OVERALL DIAGRAM
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-box">
+    <h2>Overall Team</h2>
+
+    <div class="diagram-wrap">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+
+        <div class="diag-box dc-user" style="width:160px;">
+          <div class="diag-title">You</div>
+          <div class="diag-sub">"My Dev Team, build X"</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;margin:2px 0;">
+          <div class="darr"></div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:3px;">request</div>
+        </div>
+
+        <div class="diag-box dc-orch" style="width:560px;padding:14px 18px;">
+          <div class="diag-title" style="font-size:1rem;text-align:left;">🧭 The Orchestrator Agent</div>
+          <div class="diag-sub" style="text-align:left;margin-top:4px;">Intake · Phase sequencing · Gate control · Circuit breaker · Solution blueprint · Live status panel</div>
+          <div class="diag-code">orchestrator &nbsp;·&nbsp; model: opus &nbsp;·&nbsp; no skills</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;margin:2px 0;">
+          <div class="darr"></div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-top:3px;">drives &amp; gates each phase in order</div>
+        </div>
+
+        <div style="display:flex;gap:14px;align-items:center;">
+          <div class="diag-box dc-arch" style="width:110px;">
+            <div class="diag-title">🏛️ Architect</div>
+            <div class="diag-sub">Ideation &amp; Design</div>
+            <div class="diag-code">salesforce-design</div>
+          </div>
+          <div style="display:flex;align-items:center;"><div class="rarr"></div></div>
+          <div class="diag-box dc-build" style="width:110px;">
+            <div class="diag-title">🔨 Builder</div>
+            <div class="diag-sub">Development</div>
+            <div class="diag-code">salesforce-develop</div>
+          </div>
+          <div style="display:flex;align-items:center;"><div class="rarr"></div></div>
+          <div class="diag-box dc-qa" style="width:110px;">
+            <div class="diag-title">✅ QA</div>
+            <div class="diag-sub">Testing &amp; Validation</div>
+            <div class="diag-code">salesforce-test</div>
+          </div>
+          <div style="display:flex;align-items:center;"><div class="rarr"></div></div>
+          <div class="diag-box dc-ship" style="width:110px;">
+            <div class="diag-title">🚀 Shipper</div>
+            <div class="diag-sub">Deployment &amp; Release</div>
+            <div class="diag-code">salesforce-release</div>
+          </div>
+          <div style="display:flex;align-items:center;"><div class="rarr"></div></div>
+          <div class="diag-box dc-sent" style="width:110px;">
+            <div class="diag-title">🛰️ Sentinel</div>
+            <div class="diag-sub">Monitoring &amp; Tuning</div>
+            <div class="diag-code">salesforce-observe</div>
+          </div>
+        </div>
+
+        <!-- feedback/escalation arcs -->
+        <div style="margin-top:8px;width:680px;">
+          <svg width="680" height="80" viewBox="0 0 680 80" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+            <defs>
+              <marker id="descMRed" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
+                <path d="M0,8 L4,0 L8,8" fill="none" stroke="#b71c1c" stroke-width="1.8"/>
+              </marker>
+              <marker id="descMBlue" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto">
+                <path d="M0,8 L4,0 L8,8" fill="none" stroke="#0070d2" stroke-width="1.8"/>
+              </marker>
+            </defs>
+            <!-- node centres (x): arch=55, build=201, qa=347, ship=493, sent=639 -->
+            <path d="M347,6 C347,34 201,34 201,8" fill="none" stroke="#b71c1c" stroke-width="2" marker-end="url(#descMRed)"/>
+            <path d="M347,6 C347,54 55,54 55,8"   fill="none" stroke="#b71c1c" stroke-width="2" marker-end="url(#descMRed)"/>
+            <path d="M493,6 C493,34 347,34 347,8" fill="none" stroke="#b71c1c" stroke-width="2" marker-end="url(#descMRed)"/>
+            <path d="M639,6 C639,70 201,70 201,8" fill="none" stroke="#b71c1c" stroke-width="2" marker-end="url(#descMRed)"/>
+            <path d="M201,6 C201,34 55,34 55,8"   fill="none" stroke="#0070d2" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#descMBlue)"/>
+            <path d="M639,6 C639,34 493,34 493,8" fill="none" stroke="#0070d2" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#descMBlue)"/>
+          </svg>
+          <div style="display:flex;gap:20px;font-size:0.75rem;color:var(--muted);margin-top:4px;">
+            <span><span style="display:inline-block;width:18px;height:2px;background:#b71c1c;vertical-align:middle;margin-right:5px;"></span>Feedback / route-back</span>
+            <span><span style="display:inline-block;width:18px;height:0;border-top:2px dashed #0070d2;vertical-align:middle;margin-right:5px;"></span>Escalation (circuit breaker · rollback)</span>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:20px;margin-top:16px;align-self:flex-start;margin-left:40px;">
+          <div class="diag-box dc-github" style="width:200px;padding:9px 12px;">
+            <div class="diag-title">GitHub</div>
+            <div class="diag-sub">Feature branch · PR · Merge</div>
+          </div>
+          <div style="font-size:0.78rem;color:var(--muted);max-width:240px;">Shipper pushes branch &amp; opens PR. <strong>You merge.</strong> Merge does not deploy — promotion is separate &amp; guided.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <h3>Reading the arrows</h3>
+    <p><strong>Feedback / route-back (red solid)</strong> — expected, routine. Work wasn't ready; it goes back to be fixed and re-submitted. QA finds a bug → sends it to Builder. QA finds a design gap → sends it to Architect. Shipper discovers untested surface → pulls QA back in. These are normal loop mechanics; the receiving agent fixes the specific issue and the phase proceeds on the next pass.</p>
+    <p><strong>Escalation (blue dashed)</strong> — the normal route has already failed, or the situation is too severe for a fix-forward approach. Two cases: (1) <strong>Circuit breaker</strong> — the same case has already bounced once through the feedback path and failed again; on the second bounce Builder stops trying and escalates up to Architect instead, because a design-level review is needed, not another patch attempt. (2) <strong>Rollback</strong> — Sentinel finds a severe live regression and calls Shipper for an immediate undo rather than "fix it and redeploy." It is a priority interrupt, not a retry.</p>
+    <p>The short version: <strong>feedback</strong> means "not done yet, go fix it"; <strong>escalation</strong> means "the fix-it path has failed or isn't appropriate — take a fundamentally different action."</p>
+
+  </div>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════════════
+       ORCHESTRATOR
+  ═══════════════════════════════════════════════════ -->
+  <div class="agent-card orchestrator">
+    <h2>The Orchestrator Agent</h2>
+
+    <p>Routing name: <code>orchestrator</code> &nbsp;·&nbsp; Model: Opus (the only team member not on Sonnet) &nbsp;·&nbsp; Tools: <code>Task</code>, <code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>Glob</code>, <code>Grep</code>, <code>Bash</code> &nbsp;·&nbsp; Skills: none</p>
+
+    <p>The orchestrator is the single entry point for My Dev Team. It does not design, build, test, deploy, or monitor — it drives the five phase agents through a controlled loop until the stated goal is met, keeping the whole team on one project against one target org. It runs on Opus because it holds multi-phase context, runs the circuit breaker, and makes routing decisions across the full lifecycle; every bounded phase agent runs on Sonnet. Invoke it any time the user says "My Dev Team"; invoke a phase agent directly for single-phase, scoped work where the coordination overhead adds no value.</p>
+
+    <p>Its primary output is <code>SOLUTION-BLUEPRINT.md</code>: a living map of every component built, org-config steps not captured in metadata, and a rebuild-in-a-new-org checklist. It also owns the live ASCII status panel printed at every phase transition, and bootstraps the shared <code>INCIDENTS.md</code> and <code>DECISIONS.md</code> logs at project kickoff.</p>
+
+    <p>The sections below are what you will find inside <code>orchestrator.md</code>, grouped by purpose. Phase agents share a shorter common skeleton; this file is longer because it owns the coordination logic that no phase agent should hold.</p>
+
+    <table>
+      <thead><tr><th>Section</th><th>What it does and why it belongs here</th></tr></thead>
+      <tbody>
+
+        <tr><td colspan="2" style="background:#f0f3f7; font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; padding:0.45rem 0.85rem; color:#555;">Identity &amp; operating model</td></tr>
+        <tr><td><strong>YAML frontmatter</strong></td><td>Declares the routing name, model (Opus), tools, and memory scope so Claude Code can load and invoke the agent.</td></tr>
+        <tr><td><strong>Why this agent runs on Opus</strong></td><td>Justifies the model choice so future editors don't downgrade it without understanding the tradeoff. The only section like this on the team — phase agents don't need to explain themselves.</td></tr>
+        <tr><td><strong>Announce yourself when you work</strong></td><td>The self-identification rule, plus the display name / routing name table for all six team members. Defines the names once so every agent references the same table.</td></tr>
+        <tr><td><strong>Team roster</strong></td><td>What each phase agent owns. The authoritative reference the orchestrator consults when deciding who to dispatch and what to brief them with.</td></tr>
+        <tr><td><strong>How you work: plan, then drive, then self-correct</strong></td><td>The orchestrator's 3-step operating loop: plan which phases the request touches → drive agents gate by gate → self-correct when a gate fails. The multi-phase equivalent of the phase agents' announce/plan/execute/self-correct section.</td></tr>
+
+        <tr><td colspan="2" style="background:#f0f3f7; font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; padding:0.45rem 0.85rem; color:#555;">Before the loop starts</td></tr>
+        <tr><td><strong>Step 0 — Preflight</strong></td><td>Two checks before any work starts: confirm the <code>salesforce-development</code> plugin is installed (phase agents depend on it), and optionally configure Agent Teams if the environment flag is set.</td></tr>
+        <tr><td><strong>The team vs. the plugin's own ADLC agents</strong></td><td>Standing rule for when to use My Dev Team's agents vs. the plugin's built-in ADLC agents. Prevents duplication and routing drift; only the orchestrator needs to make this call.</td></tr>
+        <tr><td><strong>Bootstrap shared project files</strong></td><td>Creates <code>INCIDENTS.md</code> and <code>DECISIONS.md</code> at project kickoff if they don't exist. Phase agents append to these files — they can't append to files that aren't there.</td></tr>
+        <tr><td><strong>Step 1 — Intake</strong></td><td>Six required inputs collected before any agent is dispatched: project name, target org, RAG status, GitHub repo, deployment channel, and DX scaffolding needed. Each item includes a "why it matters" note so the orchestrator knows what goes wrong if it's skipped.</td></tr>
+        <tr><td><strong>Step 2 — Scaffold first</strong></td><td>Conditional gate: if intake says scaffolding is needed, dispatch builder for DX project setup before anything else proceeds. Nothing can be deployed without a valid DX project layout.</td></tr>
+
+        <tr><td colspan="2" style="background:#f0f3f7; font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; padding:0.45rem 0.85rem; color:#555;">The ADLC loop</td></tr>
+        <tr><td><strong>Step 3 — Drive the ADLC loop</strong></td><td>The 12-phase table. Each row names the phase, the agent responsible, and the exit condition the orchestrator must verify before advancing. This is the core control structure — no phase agent needs visibility into the full loop.</td></tr>
+        <tr><td><strong>Run agents in parallel when work is genuinely independent</strong></td><td>Rules for when to fan out multiple agents vs. keep phases sequential. The orchestrator decides parallelism across agents; phase agents fan out only their own sub-tasks.</td></tr>
+        <tr><td><strong>Step 4 — Escalation and loop-back routes</strong></td><td>Six named automatic routes — builder circuit breaker to architect, design gaps to architect, code bugs back to builder, untested surface pulls qa back in, production issues route to builder or architect, severe regressions trigger a shipper rollback. Non-negotiable and always active.</td></tr>
+        <tr><td><strong>Loop control &amp; circuit breaker</strong></td><td>The rule that the same case bouncing twice triggers escalation rather than a third patch attempt; the same-org invariant that halts the loop if any agent reports a different target org.</td></tr>
+
+        <tr><td colspan="2" style="background:#f0f3f7; font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; padding:0.45rem 0.85rem; color:#555;">Human gates &amp; user communication</td></tr>
+        <tr><td><strong>Design Review Gate — human at the helm</strong></td><td>The mandatory human pause after architect delivers the PRD. Specifies what to show the user, how to respond to approval, pushback, and change requests, and why no building starts until approval is explicit.</td></tr>
+        <tr><td><strong>Deploy model</strong></td><td>Three standing policies: no auto-deploy on merge, ask the user how much to promote, production is gated behind validate → explicit approval → quick-deploy. Shipper enforces these; the orchestrator defines them.</td></tr>
+        <tr><td><strong>Deployment handoff — what to tell the user</strong></td><td>Four scripted plain-language messages for the user at key moments: QA sign-off, post-merge options, pre-production approval, and post-deploy confirmation. Phase agents report results; the orchestrator owns the user-facing narrative.</td></tr>
+
+        <tr><td colspan="2" style="background:#f0f3f7; font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; padding:0.45rem 0.85rem; color:#555;">Artifacts &amp; visibility</td></tr>
+        <tr><td><strong>Artifact chain (AI-Native SDLC)</strong></td><td>The end-to-end lineage: intent → PRD → build plan → deployed metadata → incident record → back to intent. Identifies the two mandatory human accountability gates (design approval and production go-ahead) and where they sit in the chain.</td></tr>
+        <tr><td><strong>Solution blueprint — you own it</strong></td><td>Defines <code>SOLUTION-BLUEPRINT.md</code>: its five required sections (header, architecture diagram, component inventory, manual org-config steps, rebuild checklist), when to create it, when to update it, and when to reconcile it against what was actually deployed.</td></tr>
+        <tr><td><strong>Live status panel — you own it</strong></td><td>The ASCII pipeline scoreboard printed at every phase transition, gate change, loopback, and user pause. Specifies the format, icon key, and the rule that every value must reflect something that has actually happened — no placeholder data.</td></tr>
+        <tr><td><strong>Shared logs</strong></td><td>Points all agents at <code>INCIDENTS.md</code> and <code>DECISIONS.md</code> and defines which agents read and write each one. Centralizing this here means every phase agent's definition can simply reference it rather than redeclare it.</td></tr>
+
+        <tr><td colspan="2" style="background:#f0f3f7; font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; padding:0.45rem 0.85rem; color:#555;">Conventions &amp; constraints</td></tr>
+        <tr><td><strong>GitHub convention</strong></td><td>Standing rules for resolving the account from <code>gh auth</code>, proposing and confirming repos, creating the feature branch at kickoff, and never pushing to <code>main</code> without explicit go-ahead. Defined here; phase agents reference it.</td></tr>
+        <tr><td><strong>Environment constraint — public resources only</strong></td><td>This team runs on any machine against any org. Prevents any agent from assuming internal network access, hardcoded paths, or org-specific credentials.</td></tr>
+        <tr><td><strong>Fallback — when Agent Teams is not available</strong></td><td>Describes the <code>Task</code>-based delegation fallback when <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code> is not set. Same phase gates and escalation rules; <code>SendMessage</code> is replaced by <code>Task</code> briefings. Everything else in the file applies unchanged.</td></tr>
+
+      </tbody>
+    </table>
+
+    <h3>Agent diagram</h3>
+    <div class="diagram-wrap">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:0;width:660px;">
+
+        <div style="display:flex;gap:12px;margin-bottom:0;">
+          <div class="diag-box dc-user" style="width:160px;padding:8px 10px;text-align:left;">
+            <div class="diag-io-label">Trigger</div>
+            <div class="diag-sub" style="font-size:0.8rem;">"My Dev Team, build X"</div>
+          </div>
+          <div class="diag-box dc-user" style="width:240px;padding:8px 10px;text-align:left;">
+            <div class="diag-io-label">6 Intake Answers</div>
+            <div class="diag-sub" style="font-size:0.78rem;">project name · target org · RAG status · GitHub repo · channel · DX scaffolding?</div>
+          </div>
+        </div>
+
+        <div style="margin:4px 0 4px 80px;"><div class="darr"></div></div>
+
+        <div class="diag-box dc-orch" style="width:580px;padding:14px 18px;">
+          <div class="diag-title" style="font-size:1rem;text-align:left;">🧭 The Orchestrator Agent</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;margin-top:10px;font-size:0.78rem;text-align:left;">
+            <div><strong>Step 0</strong> — Preflight: plugin check, Agent Teams setup</div>
+            <div><strong>Step 1</strong> — Intake: collect 6 required answers</div>
+            <div><strong>Step 2</strong> — Scaffold first (if new project)</div>
+            <div><strong>Step 3</strong> — Drive ADLC loop (12 phases, gated)</div>
+            <div><strong>Step 4</strong> — Escalation &amp; loop-back routes (6 named)</div>
+            <div><strong>Gates</strong> — Design Review (human) · Production (human)</div>
+            <div><strong>Circuit breaker</strong> — same bounce twice → escalate</div>
+            <div><strong>Parallel dispatch</strong> — fans out independent phases</div>
+          </div>
+          <div style="margin-top:10px;font-size:0.75rem;color:#6d28d9;font-style:italic;">model: opus &nbsp;·&nbsp; no skills &nbsp;·&nbsp; tools: Task, Read, Write, Edit, Glob, Grep, Bash</div>
+        </div>
+
+        <div style="margin:4px 0;display:flex;gap:60px;margin-left:40px;">
+          <div style="display:flex;flex-direction:column;align-items:center;"><div class="darr"></div><div style="font-size:0.7rem;color:var(--muted);">dispatches</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;"><div class="darr"></div><div style="font-size:0.7rem;color:var(--muted);">writes</div></div>
+          <div style="display:flex;flex-direction:column;align-items:center;"><div class="darr"></div><div style="font-size:0.7rem;color:var(--muted);">bootstraps</div></div>
+        </div>
+
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <div class="diag-box dc-arch" style="width:130px;padding:8px 10px;text-align:left;">
+            <div class="diag-io-label">Phase Agents</div>
+            <div class="diag-sub" style="font-size:0.78rem;">architect · builder · qa · shipper · sentinel</div>
+          </div>
+          <div class="diag-box dc-orch" style="width:190px;padding:8px 10px;text-align:left;">
+            <div class="diag-io-label">Output Artifact</div>
+            <div class="diag-code" style="font-size:0.78rem;">SOLUTION-BLUEPRINT.md</div>
+            <div class="diag-sub" style="font-size:0.75rem;margin-top:4px;">component map · rebuild checklist · org-config steps</div>
+          </div>
+          <div class="diag-box dc-user" style="width:190px;padding:8px 10px;text-align:left;">
+            <div class="diag-io-label">Shared Logs</div>
+            <div class="diag-code" style="font-size:0.78rem;">INCIDENTS.md</div>
+            <div class="diag-code" style="font-size:0.78rem;margin-top:3px;">DECISIONS.md</div>
+            <div class="diag-sub" style="font-size:0.75rem;margin-top:4px;">created at kickoff; all agents append</div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;border:2px dashed #334155;border-radius:8px;padding:10px 14px;width:440px;font-size:0.78rem;background:#f8fafc;">
+          <strong>Two mandatory human gates — nothing proceeds without explicit approval:</strong><br>
+          <span style="color:var(--teal);">①</span> <strong>Design Review Gate</strong> — user approves the PRD before any build starts<br>
+          <span style="color:var(--orange);">②</span> <strong>Production Gate</strong> — user approves before any production org is touched
+        </div>
+
+      </div>
+    </div>
+    <p class="diag-caption">The orchestrator's internal structure: inputs at the top, its core responsibilities in the centre, and the three things it produces or manages at the bottom. It dispatches but does not do phase work itself.</p>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       ARCHITECT
+  ═══════════════════════════════════════════════════ -->
+  <div class="agent-card architect">
+    <h2>The Architect Agent</h2>
+    <ol>
+      <li><strong>Name</strong> — Routing name: <code>architect</code>; display name: "The Architect Agent."</li>
+      <li><strong>Role</strong> — Owns Ideation &amp; Design: discovers what is live in the target org, then produces the PRD and Agentforce agent spec that the rest of the team builds from.</li>
+      <li><strong>The problem it solves</strong> — Without an architect, builders design as they code, producing metadata that doesn't reflect the org's real state and specs that contradict each other mid-build.</li>
+      <li><strong>What it receives</strong> — An intake brief from the orchestrator naming the target org, the solution goal, the channel, and the RAG status.</li>
+      <li><strong>What it produces</strong> — A <code>PRD-&lt;solution&gt;.md</code> at the project root: the durable contract containing the agent spec, backing-asset inventory, sharing/security model, and RAG requirements.</li>
+      <li><strong>Exit gate</strong> — The PRD file exists at the project root, names the target org, lists every backing asset the builder will need, and the user has explicitly approved the design at the Design Review Gate.</li>
+      <li><strong>Salesforce skills it uses</strong> — Preloaded: <code>salesforce-design</code> (design workflow), <code>salesforce-document</code> (solution documentation, phase 10); dispatched on demand: <code>platform-environment-validate</code>, <code>platform-architecture-analyze</code>, <code>platform-metadata-retrieve</code>, <code>platform-sharing-owd-configure</code>, <code>platform-sharing-rules-generate</code>, <code>agentforce-generate</code> (agent spec authoring).</li>
+      <li><strong>Claude Code tools it needs</strong> — <code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>Glob</code>, <code>Grep</code>, <code>Bash</code>, <code>Skill</code>, <code>Task</code>, <code>WebFetch</code>, <code>WebSearch</code>.</li>
+      <li><strong>Model</strong> — Sonnet; the design phase is bounded and skill-driven, so the cheaper model is sufficient.</li>
+      <li><strong>How it hands off forward</strong> — Delivers the completed PRD to the orchestrator, which then dispatches builder with a brief pointing at the PRD file.</li>
+      <li><strong>How it escalates backward</strong> — If qa or builder returns a design gap (not a code bug), the orchestrator routes it back to architect with the specific section to revise; architect updates the PRD and re-presents to the user.</li>
+      <li><strong>What it documents</strong> — Co-authors <code>SOLUTION-DOC.md</code> at phase 10 (owns sections A, B, C, D, E, F, G, I, and K.1/K.3/K.4/K.5; section H belongs to QA); logs non-obvious design decisions to <code>DECISIONS.md</code>; checks <code>INCIDENTS.md</code> before designing in any area with known history.</li>
+      <li><strong>When NOT to use it</strong> — Do not invoke architect to write Apex, LWC, or Flows (use builder), to run tests (use qa), or to package a release (use shipper).</li>
+    </ol>
+
+    <h3>Agent diagram</h3>
+    <div class="diagram-wrap">
+      <div class="phase-diag-wrap">
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Receives</div>
+          <div class="diag-box dc-user phase-diag-iobox">
+            <div class="diag-io-label">From Orchestrator</div>
+            target org · solution goal · channel · RAG status
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="diag-box dc-arch phase-diag-agent">
+            <div class="diag-title">🏛️ The Architect Agent</div>
+            <div class="diag-sub">Ideation &amp; Design</div>
+            <div class="diag-code">salesforce-design</div>
+            <div class="diag-code" style="margin-top:3px;">salesforce-document</div>
+            <div style="margin-top:8px;font-size:0.72rem;color:var(--muted);text-align:left;">Live org discovery → schema &amp; security model → Agentforce agent spec → PRD</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Produces</div>
+          <div class="diag-box dc-arch phase-diag-iobox">
+            <div class="diag-io-label">Output Artifact</div>
+            <div class="diag-code" style="font-size:0.75rem;">PRD-&lt;solution&gt;.md</div>
+            <div style="margin-top:4px;">agent spec · data model · sharing model · RAG requirements</div>
+          </div>
+          <div class="diag-box dc-arch phase-diag-iobox" style="border-style:dashed;">
+            <div class="diag-io-label">Exit Gate</div>
+            PRD exists · names target org · lists backing assets · user approved at Design Review Gate
+          </div>
+        </div>
+        <div class="phase-diag-skills">
+          <div class="diag-col-hdr">Dispatched Skills</div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-environment-validate</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-architecture-analyze</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-metadata-retrieve</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-sharing-owd-configure</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">agentforce-generate</div><div style="font-size:0.7rem;color:var(--muted);">agent spec authoring</div></div>
+          <div class="diag-box dc-plugin phase-diag-skill"><div class="diag-code">architecture-review</div><div style="font-size:0.7rem;color:var(--muted);">Well-Architected grade (via Task)</div></div>
+        </div>
+      </div>
+      <div class="diag-feedback-row">
+        <span style="color:var(--red);">◀ Receives back:</span>
+        <div class="diag-box diag-fb-red">Design gap from QA or Builder → revises PRD → re-presents to user</div>
+        <div class="diag-box diag-fb-blue">Circuit breaker from Builder (2nd bounce) → design review</div>
+      </div>
+    </div>
+    <p class="diag-caption">Architect discovers the real org state before designing anything. Hands the finished PRD to the orchestrator, which gates on user approval before dispatching Builder.</p>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       BUILDER
+  ═══════════════════════════════════════════════════ -->
+  <div class="agent-card builder">
+    <h2>The Builder Agent</h2>
+    <ol>
+      <li><strong>Name</strong> — Routing name: <code>builder</code>; display name: "The Builder Agent."</li>
+      <li><strong>Role</strong> — Owns Development: takes a finished, user-approved PRD and turns it into deployable Salesforce metadata — Apex, LWC, Flows, custom objects/fields, and the Agentforce agent bundle.</li>
+      <li><strong>The problem it solves</strong> — Without a dedicated builder, architects hand-wave implementation details and testers receive code written by whoever happened to be active, with no consistent quality bar.</li>
+      <li><strong>What it receives</strong> — A brief from the orchestrator pointing at the approved PRD, naming the target org and the DX project directory to commit into.</li>
+      <li><strong>What it produces</strong> — Authored metadata in the DX project (<code>.agent</code> bundle, Flows, Prompt Templates, Apex classes, Permission Sets, MIAW/ESD config) plus LSP-validated, commit-ready source on the feature branch.</li>
+      <li><strong>Exit gate</strong> — All metadata compiles/validates locally (LSP diagnostics pass), the DX project structure is intact, and the feature branch is pushed — qa can pull and run against it without manual setup.</li>
+      <li><strong>Salesforce skills it uses</strong> — Preloaded: <code>salesforce-develop</code>; dispatched: <code>dx-project-create</code>, <code>agentforce-generate</code>, <code>platform-apex-generate</code>, <code>experience-lwc-generate</code>, <code>platform-custom-object-generate</code>, <code>platform-custom-field-generate</code>, <code>platform-validation-rule-generate</code>, <code>automation-flow-generate</code>, <code>platform-permission-set-generate</code>, <code>platform-lsp-integrate</code> (LSP diagnostics).</li>
+      <li><strong>Claude Code tools it needs</strong> — <code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>Glob</code>, <code>Grep</code>, <code>Bash</code>, <code>Skill</code>, <code>Task</code>.</li>
+      <li><strong>Model</strong> — Sonnet; code generation and metadata authoring are well-scoped tasks the smaller model handles reliably.</li>
+      <li><strong>How it hands off forward</strong> — Dispatches qa directly (via <code>Task</code>) with a brief pointing at the feature branch and the PRD's eval-set requirements; does not route through the orchestrator.</li>
+      <li><strong>How it escalates backward</strong> — If a qa failure traces to a design gap rather than a code bug, builder flags it to the orchestrator rather than patching around it; on a second qa bounce of the same case, the circuit breaker triggers and architect is brought in.</li>
+      <li><strong>What it documents</strong> — Checks <code>INCIDENTS.md</code> before touching any area with known bug history; does not write to <code>DECISIONS.md</code> directly, but may flag a decision to architect for logging.</li>
+      <li><strong>When NOT to use it</strong> — Do not invoke builder before a user-approved PRD exists (use architect first), and do not ask builder to write or run test classes (use qa).</li>
+    </ol>
+
+    <h3>Agent diagram</h3>
+    <div class="diagram-wrap">
+      <div class="phase-diag-wrap">
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Receives</div>
+          <div class="diag-box dc-user phase-diag-iobox">
+            <div class="diag-io-label">From Orchestrator</div>
+            approved PRD · target org · DX project directory
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="diag-box dc-build phase-diag-agent">
+            <div class="diag-title">🔨 The Builder Agent</div>
+            <div class="diag-sub">Development</div>
+            <div class="diag-code">salesforce-develop</div>
+            <div style="margin-top:8px;font-size:0.72rem;color:var(--muted);text-align:left;">Build plan → scaffold DX project → author metadata → LSP diagnostics → commit to branch</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Produces</div>
+          <div class="diag-box dc-build phase-diag-iobox">
+            <div class="diag-io-label">Output Artifacts</div>
+            <div class="diag-code" style="font-size:0.75rem;">.agent bundle</div>
+            <div style="margin-top:4px;">Flows · Apex · LWC · Permission Sets · MIAW/ESD config — LSP-validated, pushed to branch</div>
+          </div>
+          <div class="diag-box dc-build phase-diag-iobox" style="border-style:dashed;">
+            <div class="diag-io-label">Exit Gate</div>
+            LSP diagnostics pass · DX structure intact · branch pushed — QA can run without manual setup
+          </div>
+        </div>
+        <div class="phase-diag-skills">
+          <div class="diag-col-hdr">Dispatched Skills</div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">dx-project-create</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">agentforce-generate</div><div style="font-size:0.7rem;color:var(--muted);">.agent authoring &amp; deploy</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-apex-generate</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">automation-flow-generate</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">experience-lwc-generate</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-custom-object-generate</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-permission-set-generate</div></div>
+        </div>
+      </div>
+      <div class="diag-feedback-row">
+        <span style="color:var(--red);">◀ Receives back:</span>
+        <div class="diag-box diag-fb-red">Code bug from QA (1st time) → fix &amp; resubmit</div>
+        <span style="color:var(--blue);">▲ Escalates:</span>
+        <div class="diag-box diag-fb-blue">2nd QA bounce → circuit breaker → Architect</div>
+      </div>
+    </div>
+    <p class="diag-caption">Builder turns the PRD into deployable metadata, runs its own LSP checks before handing off, and commits in atomic units on the feature branch.</p>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       QA
+  ═══════════════════════════════════════════════════ -->
+  <div class="agent-card qa">
+    <h2>The QA Agent</h2>
+    <ol>
+      <li><strong>Name</strong> — Routing name: <code>qa</code>; display name: "The QA Agent."</li>
+      <li><strong>Role</strong> — Owns Testing &amp; Validation: runs the actual test suite and Agentforce eval set against the build, grades it against the OWASP LLM Top 10, and signs off explicitly before anything ships.</li>
+      <li><strong>The problem it solves</strong> — Without a QA agent, test coverage is self-assessed by the builder, eval sets are never run, and security grading is skipped under time pressure.</li>
+      <li><strong>What it receives</strong> — A brief from the orchestrator pointing at the feature branch, the PRD's eval-set requirements, and the target org to test against.</li>
+      <li><strong>What it produces</strong> — An explicit sign-off statement naming what was tested, the coverage percentage, the OWASP grade, and any known gaps — the artifact shipper requires before promoting.</li>
+      <li><strong>Exit gate</strong> — Apex coverage ≥ 75% org-wide with meaningful assertions, all eval-set cases pass, Code Analyzer findings addressed, OWASP LLM Top 10 grade recorded, and qa's sign-off committed to the branch.</li>
+      <li><strong>Salesforce skills it uses</strong> — Preloaded: <code>salesforce-test</code>, <code>salesforce-document</code>; dispatched: <code>platform-apex-test-run</code>, <code>platform-apex-test-generate</code>, <code>dx-code-analyzer-run</code>, <code>platform-data-manage</code>, <code>agentforce-test</code> (includes OWASP Mode C security grading).</li>
+      <li><strong>Claude Code tools it needs</strong> — <code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>Glob</code>, <code>Grep</code>, <code>Bash</code>, <code>Skill</code>, <code>Task</code>.</li>
+      <li><strong>Model</strong> — Sonnet; test execution and result interpretation are bounded tasks, and the skills carry the domain-specific evaluation logic.</li>
+      <li><strong>How it hands off forward</strong> — Delivers the sign-off statement to the orchestrator; orchestrator dispatches shipper with that sign-off as a prerequisite artifact.</li>
+      <li><strong>How it escalates backward</strong> — Routes code bugs back to builder on the first failure; routes design gaps to architect; if builder's fix fails qa a second time, triggers the circuit breaker rather than sending it back a third time.</li>
+      <li><strong>What it documents</strong> — Co-authors <code>SOLUTION-DOC.md</code> at phase 10 (owns sections H, J, and K.2); logs escalated or stuck failures to <code>INCIDENTS.md</code>; logs non-obvious coverage or scope decisions to <code>DECISIONS.md</code>.</li>
+      <li><strong>When NOT to use it</strong> — Do not invoke qa to fix code (use builder), to design the agent spec (use architect), or to promote a release (use shipper).</li>
+    </ol>
+
+    <h3>Agent diagram</h3>
+    <div class="diagram-wrap">
+      <div class="phase-diag-wrap">
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Receives</div>
+          <div class="diag-box dc-user phase-diag-iobox">
+            <div class="diag-io-label">From Orchestrator</div>
+            feature branch · PRD eval-set requirements · target org
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="diag-box dc-qa phase-diag-agent">
+            <div class="diag-title">✅ The QA Agent</div>
+            <div class="diag-sub">Testing &amp; Validation</div>
+            <div class="diag-code">salesforce-test</div>
+            <div class="diag-code" style="margin-top:3px;">salesforce-document</div>
+            <div style="margin-top:8px;font-size:0.72rem;color:var(--muted);text-align:left;">Apex suite → Code Analyzer → Agentforce eval batch → OWASP LLM grade (Mode C) → sign-off</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Produces</div>
+          <div class="diag-box dc-qa phase-diag-iobox">
+            <div class="diag-io-label">Output Artifact</div>
+            explicit sign-off: what was tested · coverage % · OWASP grade · known gaps
+          </div>
+          <div class="diag-box dc-qa phase-diag-iobox" style="border-style:dashed;">
+            <div class="diag-io-label">Exit Gate</div>
+            ≥75% coverage · eval-set passes · Code Analyzer addressed · OWASP grade recorded · sign-off committed
+          </div>
+        </div>
+        <div class="phase-diag-skills">
+          <div class="diag-col-hdr">Dispatched Skills</div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-apex-test-run</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-apex-test-generate</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">dx-code-analyzer-run</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-data-manage</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">agentforce-test</div><div style="font-size:0.7rem;color:var(--muted);">incl. OWASP Mode C grading</div></div>
+        </div>
+      </div>
+      <div class="diag-feedback-row">
+        <span style="color:var(--red);">▶ Routes back:</span>
+        <div class="diag-box diag-fb-red">Code bug → Builder</div>
+        <div class="diag-box diag-fb-red">Design gap → Architect</div>
+        <div class="diag-box diag-fb-blue">2nd bounce of same case → circuit breaker (never a 3rd attempt)</div>
+      </div>
+    </div>
+    <p class="diag-caption">QA runs all checks in parallel, then reconciles every result before signing off. Sign-off is the prerequisite artifact Shipper requires before promoting.</p>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       SHIPPER
+  ═══════════════════════════════════════════════════ -->
+  <div class="agent-card shipper">
+    <h2>The Shipper Agent</h2>
+    <ol>
+      <li><strong>Name</strong> — Routing name: <code>shipper</code>; display name: "The Shipper Agent."</li>
+      <li><strong>Role</strong> — Owns Deployment &amp; Release: packages the build, promotes it through sandbox to production in dependency order, and manages Agentforce bundle versioning, activation windows, and rollback.</li>
+      <li><strong>The problem it solves</strong> — Without a dedicated shipper, deployments happen ad hoc, dependency order is guessed, production changes skip validation, and rollback plans exist only in someone's head.</li>
+      <li><strong>What it receives</strong> — A brief from the orchestrator confirming qa has signed off, pointing at the feature branch and the target org for promotion.</li>
+      <li><strong>What it produces</strong> — A successful deploy confirmation (metadata live in the target org), an activated BotVersion, and a prepared rollback path — the artifacts sentinel monitors against.</li>
+      <li><strong>Exit gate</strong> — <code>platform-deploy-validate</code> passes, user gives explicit go-ahead, <code>platform-quick-deploy</code> succeeds, BotVersion Status = Active, and the rollback plan is documented in the blueprint.</li>
+      <li><strong>Salesforce skills it uses</strong> — Preloaded: <code>salesforce-release</code>; dispatched: <code>platform-metadata-deploy</code>, <code>platform-deploy-validate</code>, <code>platform-quick-deploy</code>, <code>platform-destructive-deploy</code>, <code>dx-org-manage</code>, <code>platform-manifest-generate</code>; Agentforce publish/activate via <code>sf agent publish|activate</code> CLI directly.</li>
+      <li><strong>Claude Code tools it needs</strong> — <code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>Glob</code>, <code>Grep</code>, <code>Bash</code>, <code>Skill</code>, <code>Task</code>.</li>
+      <li><strong>Model</strong> — Sonnet; deployment steps are procedural and skill-driven with clear pass/fail outcomes.</li>
+      <li><strong>How it hands off forward</strong> — Dispatches sentinel directly (via <code>Task</code>) to begin post-release verification; does not route through the orchestrator.</li>
+      <li><strong>How it escalates backward</strong> — If asked to ship untested work, pulls qa in before proceeding; if sentinel requests a rollback, treats it as a priority interrupt ahead of the normal queue.</li>
+      <li><strong>What it documents</strong> — Logs every release and rollback to <code>INCIDENTS.md</code>; logs non-obvious release strategy decisions (e.g. component-by-component vs. all-at-once) to <code>DECISIONS.md</code>.</li>
+      <li><strong>When NOT to use it</strong> — Do not invoke shipper before qa has signed off, and never ask shipper to fix a bug found post-deploy (route that to builder or architect via sentinel).</li>
+    </ol>
+
+    <h3>Agent diagram</h3>
+    <div class="diagram-wrap">
+      <div class="phase-diag-wrap">
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Receives</div>
+          <div class="diag-box dc-user phase-diag-iobox">
+            <div class="diag-io-label">From Orchestrator</div>
+            QA sign-off · feature branch · target org for promotion
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="diag-box dc-ship phase-diag-agent">
+            <div class="diag-title">🚀 The Shipper Agent</div>
+            <div class="diag-sub">Deployment &amp; Release</div>
+            <div class="diag-code">salesforce-release</div>
+            <div style="margin-top:8px;font-size:0.72rem;color:var(--muted);text-align:left;">Deploy in dependency order → publish &amp; activate agent → prepare rollback → hand to Sentinel</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Produces</div>
+          <div class="diag-box dc-ship phase-diag-iobox">
+            <div class="diag-io-label">Output Artifacts</div>
+            deploy confirmation · BotVersion Active · rollback path documented in blueprint
+          </div>
+          <div class="diag-box dc-ship phase-diag-iobox" style="border-style:dashed;">
+            <div class="diag-io-label">Exit Gate</div>
+            validate passes · user go-ahead · quick-deploy succeeds · BotVersion = Active · rollback ready
+          </div>
+        </div>
+        <div class="phase-diag-skills">
+          <div class="diag-col-hdr">Dispatched Skills</div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-metadata-deploy</div><div style="font-size:0.7rem;color:var(--muted);">sandbox / staging</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-deploy-validate</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-quick-deploy</div><div style="font-size:0.7rem;color:var(--muted);">production only, after user go-ahead</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-destructive-deploy</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">dx-org-manage</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-manifest-generate</div></div>
+        </div>
+      </div>
+      <div class="diag-feedback-row">
+        <span style="color:var(--red);">◀ Pulls in:</span>
+        <div class="diag-box diag-fb-red">Asked to ship untested work → pulls QA in first</div>
+        <span style="color:var(--blue);">◀ Priority interrupt:</span>
+        <div class="diag-box diag-fb-blue">Sentinel rollback request → treated as highest priority</div>
+      </div>
+    </div>
+    <p class="diag-caption">Shipper promotes in dependency order: objects/fields → Permission Sets → Flows → agent bundle → ESD → ExperienceBundle. Production always goes through validate → user approval → quick-deploy.</p>
+
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       SENTINEL
+  ═══════════════════════════════════════════════════ -->
+  <div class="agent-card sentinel">
+    <h2>The Sentinel Agent</h2>
+    <ol>
+      <li><strong>Name</strong> — Routing name: <code>sentinel</code>; display name: "The Sentinel Agent."</li>
+      <li><strong>Role</strong> — Owns Monitoring &amp; Tuning: verifies the live deployment, investigates debug logs and governor limits, and routes anything it finds back into the build loop rather than patching production directly.</li>
+      <li><strong>The problem it solves</strong> — Without a sentinel, post-release issues are discovered by end users, debug logs are never reviewed, and production patches bypass the test pipeline.</li>
+      <li><strong>What it receives</strong> — A brief from the orchestrator after every production promotion, naming the live org, the deployed agent bundle, and the channel to verify.</li>
+      <li><strong>What it produces</strong> — A verification record confirming live sessions resolve correctly, governor limits are within bounds, and no regression exists — or an incident log entry and a routed fix request if something is wrong.</li>
+      <li><strong>Exit gate</strong> — Live agent sessions resolve without errors, no governor-limit violations in debug logs, and the verification record is committed to the branch; this is the gate that releases phase 10 (documentation).</li>
+      <li><strong>Salesforce skills it uses</strong> — Preloaded: <code>salesforce-observe</code>; dispatched: <code>platform-apex-logs-debug</code>, <code>agentforce-observe</code> (session trace and conversation log analysis); runs <code>agentforce-test</code> Mode C on a schedule for ongoing OWASP security posture checks.</li>
+      <li><strong>Claude Code tools it needs</strong> — <code>Read</code>, <code>Write</code>, <code>Edit</code>, <code>Glob</code>, <code>Grep</code>, <code>Bash</code>, <code>WebFetch</code>, <code>Skill</code>, <code>Task</code>.</li>
+      <li><strong>Model</strong> — Sonnet; log analysis and session-trace interpretation are bounded, evidence-based tasks.</li>
+      <li><strong>How it hands off forward</strong> — On a clean verification, commits the verification record to the branch, which is the gate that releases phase 10 (documentation); on a clean ongoing posture check, updates the incident log with "no findings."</li>
+      <li><strong>How it escalates backward</strong> — Routes code-level fixes to builder; routes design-gap findings to architect; on a severe live regression, calls shipper directly to request a priority rollback without waiting for the user to intervene.</li>
+      <li><strong>What it documents</strong> — Logs every production incident, governor-limit finding, and rollback to <code>INCIDENTS.md</code>; every new production incident triggers a new entry in the eval set so the same failure cannot silently recur.</li>
+      <li><strong>When NOT to use it</strong> — Do not invoke sentinel before a live deployment exists, and never ask sentinel to write a fix (it investigates and routes; builder writes the patch).</li>
+    </ol>
+
+    <h3>Agent diagram</h3>
+    <div class="diagram-wrap">
+      <div class="phase-diag-wrap">
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Receives</div>
+          <div class="diag-box dc-user phase-diag-iobox">
+            <div class="diag-io-label">From Orchestrator</div>
+            live org · deployed agent bundle · channel to verify
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <div class="diag-box dc-sent phase-diag-agent">
+            <div class="diag-title">🛰️ The Sentinel Agent</div>
+            <div class="diag-sub">Monitoring &amp; Tuning</div>
+            <div class="diag-code">salesforce-observe</div>
+            <div style="margin-top:8px;font-size:0.72rem;color:var(--muted);text-align:left;">Debug logs → governor limits → session traces → OWASP posture check → verification record</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;margin-top:22px;"><div class="rarr"></div></div>
+        <div class="phase-diag-io">
+          <div class="diag-col-hdr">Produces</div>
+          <div class="diag-box dc-sent phase-diag-iobox">
+            <div class="diag-io-label">Output Artifact</div>
+            verification record: live sessions resolve · no governor violations · no regression — or incident entry + routed fix request
+          </div>
+          <div class="diag-box dc-sent phase-diag-iobox" style="border-style:dashed;">
+            <div class="diag-io-label">Exit Gate</div>
+            live sessions clean · governor limits within bounds · verification committed → releases phase 10 (documentation)
+          </div>
+        </div>
+        <div class="phase-diag-skills">
+          <div class="diag-col-hdr">Dispatched Skills</div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">platform-apex-logs-debug</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">agentforce-observe</div><div style="font-size:0.7rem;color:var(--muted);">session traces · conversation logs</div></div>
+          <div class="diag-box dc-skill phase-diag-skill"><div class="diag-code">agentforce-test (Mode C)</div><div style="font-size:0.7rem;color:var(--muted);">OWASP posture — run on schedule</div></div>
+        </div>
+      </div>
+      <div class="diag-feedback-row">
+        <span style="color:var(--red);">▶ Routes back:</span>
+        <div class="diag-box diag-fb-red">Code-level fix → Builder</div>
+        <div class="diag-box diag-fb-red">Design gap → Architect</div>
+        <div class="diag-box diag-fb-blue">Severe regression → Shipper (priority rollback, no waiting)</div>
+      </div>
+    </div>
+    <p class="diag-caption">Sentinel investigates and routes — it never patches production itself. A clean verification record releases the documentation phase; any incident becomes a new eval-set entry so the same failure cannot silently recur.</p>
+
+  </div>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════════════
+       COMMON SECTIONS
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-box">
+    <h2>Common Agent Sections</h2>
+    <p>Every agent <code>.md</code> file contains these sections. When building your own Agentic Dev Team, treat these as the required skeleton — an agent file without any of them will behave inconsistently or be impossible to route correctly.</p>
+    <p class="table-key">✅ = present &nbsp;&nbsp; — = not applicable</p>
+
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Section</th>
+          <th>Purpose</th>
+          <th class="orch">Orch</th>
+          <th class="arch">Arch</th>
+          <th class="build">Build</th>
+          <th class="qa">QA</th>
+          <th class="ship">Ship</th>
+          <th class="sntl">Sntl</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>YAML frontmatter</strong><br><small>(<code>name</code>, <code>model</code>, <code>tools</code>, <code>skills</code>, <code>memory</code>)</small></td>
+          <td>Tells Claude Code the routing name, which model to use, which tools the agent can call, which skills to preload, and whether to load project memory. Every agent file must have this or it won't be recognized.</td>
+          <td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td>
+        </tr>
+        <tr>
+          <td><strong>Announce yourself, then plan, execute, and self-correct</strong></td>
+          <td>The operating pattern: open with a bold banner, state a short plan, execute it, then check output against the phase gate before handing off. Without this, the user can't tell which agent is active.</td>
+          <td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td>
+        </tr>
+        <tr>
+          <td><strong>Run [work] in parallel</strong></td>
+          <td>Names which tasks within the phase are genuinely independent and can be fanned out concurrently. Each agent names this differently (design work, checks, components, diagnosis) but the section exists in all six agents.</td>
+          <td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td>
+        </tr>
+        <tr>
+          <td><strong>Installed skills you must use</strong></td>
+          <td>Lists every <code>salesforce-development</code> plugin skill the agent dispatches, with the exact call syntax. Without this, the agent improvises raw CLI commands instead of using the skills.</td>
+          <td class="dash">—</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td>
+        </tr>
+        <tr>
+          <td><strong>Ground rules</strong></td>
+          <td>Non-negotiable behavioral constraints: what the agent must never do, when to call another agent instead of proceeding, how to use GitHub, and how to handle the target org.</td>
+          <td class="dash">—</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td>
+        </tr>
+        <tr>
+          <td><strong>Example prompts this agent should handle</strong></td>
+          <td>Two or three concrete trigger phrases that illustrate the happy path, the delegation path, and the co-authoring path. Helps with routing decisions and documents scope boundaries.</td>
+          <td class="dash">—</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td><td class="check">✅</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <blockquote>The orchestrator has no "Installed skills", "Ground rules", or "Example prompts" sections because it routes to phase agents rather than executing work itself — its unique sections (intake, ADLC loop table, escalation routes, status panel, etc.) replace them.</blockquote>
+  </div>
+
+  <hr>
+
+  <!-- ══════════════════════════════════════════════════
+       AGENT-SPECIFIC SECTIONS
+  ═══════════════════════════════════════════════════ -->
+  <div class="section-box">
+    <h2>Agent-Specific Sections</h2>
+    <p>These sections appear in only one agent file. Each one represents a design decision that applies only to that phase — knowing <em>why</em> a section is unique is as important as knowing it exists.</p>
+
+    <h3>Orchestrator only</h3>
+    <table>
+      <thead><tr><th>Section</th><th>Why it's unique</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Why this agent runs on Opus</strong></td><td>Only the orchestrator uses a more capable model; this section justifies the cost and prevents future editors from downgrading it without understanding the tradeoff.</td></tr>
+        <tr><td><strong>Team roster</strong></td><td>The orchestrator is the only agent that needs to know every other agent's routing name and display name in order to dispatch them.</td></tr>
+        <tr><td><strong>How you work: plan, then drive, then self-correct</strong></td><td>Phase agents have their own plan/execute/correct loop inside their Announce section; the orchestrator's version covers multi-phase coordination, not single-phase execution.</td></tr>
+        <tr><td><strong>Step 0 — Preflight</strong></td><td>The orchestrator runs before any phase agent, so it owns the plugin check and Agent Teams setup. Phase agents assume the environment is ready.</td></tr>
+        <tr><td><strong>The team vs. the plugin's own ADLC agents</strong></td><td>The orchestrator decides when to use this team's agents vs. the <code>salesforce-development</code> plugin's own ADLC agents; phase agents don't make that routing call.</td></tr>
+        <tr><td><strong>Step 1 — Intake</strong></td><td>Intake belongs to the orchestrator because it scopes the entire project before any specialist starts work.</td></tr>
+        <tr><td><strong>Step 2 — Scaffold first</strong></td><td>The scaffolding decision (new DX project vs. existing) is a routing choice, not a build task; the orchestrator gates it before dispatching builder.</td></tr>
+        <tr><td><strong>Step 3 — Drive the ADLC loop</strong></td><td>The 12-phase ADLC table with exit conditions is the orchestrator's core control structure; no phase agent needs visibility into the full loop.</td></tr>
+        <tr><td><strong>Run agents in parallel when work is genuinely independent</strong></td><td>Parallelism decisions (which tasks to fan out vs. serialize) are the orchestrator's responsibility; phase agents fan out their own sub-tasks but don't decide when to run other agents in parallel.</td></tr>
+        <tr><td><strong>Step 4 — Escalation and loop-back routes</strong></td><td>The six named escalation routes (circuit breaker, design gap, code bug, untested surface, production issue, rollback) are all orchestrator-owned routing logic.</td></tr>
+        <tr><td><strong>Deploy model — GitHub gates, promotion is guided</strong></td><td>The "no auto-deploy on merge" rule and the validate → quick-deploy production gate are orchestrator-level policies that shipper enforces but the orchestrator defines.</td></tr>
+        <tr><td><strong>Design Review Gate — human at the helm</strong></td><td>The mandatory human approval pause between architect and builder is an orchestrator gate, not a phase responsibility.</td></tr>
+        <tr><td><strong>Deployment handoff — what to tell the user</strong></td><td>The four scripted handoff messages (QA sign-off, post-merge, pre-production, post-deploy) are orchestrator language; phase agents report results but don't own the user-facing narrative.</td></tr>
+        <tr><td><strong>Artifact chain (AI-Native SDLC)</strong></td><td>The end-to-end artifact lineage (intent → PRD → build plan → deployed metadata → incident record → back to intent) is only meaningful at the orchestrator level.</td></tr>
+        <tr><td><strong>Solution blueprint — you own it</strong></td><td><code>SOLUTION-BLUEPRINT.md</code> is an orchestrator-maintained living map; no phase agent owns cross-phase state.</td></tr>
+        <tr><td><strong>Live status panel — you own it</strong></td><td>The ASCII pipeline scoreboard is printed by the orchestrator at every phase transition; phase agents don't render it.</td></tr>
+        <tr><td><strong>Loop control &amp; circuit breaker</strong></td><td>The "same case bounces twice → escalate" rule is enforced by the orchestrator, not individual agents.</td></tr>
+        <tr><td><strong>GitHub convention</strong></td><td>Defined here for the orchestrator (which creates the branch at kickoff) and referenced by phase agents; the source of truth is this file.</td></tr>
+        <tr><td><strong>Shared logs</strong></td><td>The orchestrator points all agents at <code>INCIDENTS.md</code> and <code>DECISIONS.md</code>; defining them here ensures every phase agent knows they exist.</td></tr>
+        <tr><td><strong>Environment constraint — public resources only</strong></td><td>The team runs on any machine; this constraint prevents any agent from assuming internal network access.</td></tr>
+        <tr><td><strong>Fallback — when Agent Teams is not available</strong></td><td>Describes the <code>Task</code>-based fallback when <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code> is not set; only the orchestrator needs to switch modes.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Architect only</h3>
+    <table>
+      <thead><tr><th>Section</th><th>Why it's unique</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Product Requirements Document (PRD) — you own it</strong></td><td>The PRD is architect's primary output artifact; no other agent produces it.</td></tr>
+        <tr><td><strong>RAG / Data 360 — no skill exists, so write explicit instructions</strong></td><td>The RAG pipeline requires manual org setup; architect documents this gap so builder doesn't attempt to automate something that can't be automated.</td></tr>
+        <tr><td><strong>Live org discovery — run at the start of EVERY project</strong></td><td>Architect is the only agent that runs a full org capability inventory before doing its work; all other agents receive confirmed capabilities via the PRD.</td></tr>
+        <tr><td><strong>Data 360 &amp; Headless 360 hosted MCP servers — bootstrap check</strong></td><td>The MCP server activation and External Client App setup is a design-time decision that belongs in the PRD before builder touches metadata.</td></tr>
+        <tr><td><strong>Agentforce Agent Script DSL — required spec elements</strong></td><td>The reserved entry point name, static instruction block syntax, off-topic handling, and <code>default_agent_user</code> are spec-time constraints the architect must document for builder.</td></tr>
+        <tr><td><strong>Agentforce Voice — design for the ear from the start</strong></td><td>Voice constraints (formatting rules, telephony strategy, <code>modality voice</code> block, latency masking) must be designed before any metadata is written; retrofitting voice onto a chat agent is a full redesign.</td></tr>
+        <tr><td><strong>Agentforce Agent Script patterns — apply at spec time</strong></td><td>Choosing patterns (action chaining, conditionals, required subagent workflow, etc.) is a design decision, not an implementation detail; architect names them in the PRD so builder doesn't re-decide them.</td></tr>
+        <tr><td><strong>Org constraint awareness</strong></td><td>The Experience Cloud network cap that silently breaks MIAW deployments is a design-time check only architect needs to run.</td></tr>
+        <tr><td><strong>Experience Cloud + MIAW design checklist</strong></td><td>The ESD/site spec (deploymentType, clientVersion, areGuestUsersAllowed, SCRT2 URL, embedding approach) belongs in the PRD; builder needs these values specified, not inferred.</td></tr>
+        <tr><td><strong>Final solution documentation — co-authored with The QA Agent</strong></td><td>Architect is a primary documentation co-author; this section defines which sections it owns (A–I, K.1/K.3/K.4/K.5) and the coordination protocol with qa.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Builder only</h3>
+    <table>
+      <thead><tr><th>Section</th><th>Why it's unique</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Plan before you build</strong></td><td>Builder is the only agent that produces an intermediate artifact (build plan) between receiving the PRD and writing metadata; planning before coding prevents mid-build redesigns.</td></tr>
+        <tr><td><strong>External Client App for hosted MCP (Data 360 / Headless 360)</strong></td><td>ECA creation and permission set generation for MCP connectivity is a builder task that follows architect's bootstrap check; it's mechanical metadata work, not design.</td></tr>
+        <tr><td><strong>Agent Script DSL — hard rules</strong></td><td>The deployment-breaking DSL rules (entry point name, block scalar syntax, off-topic block, <code>default_agent_user</code> query) are enforced during authoring, not just specified in the PRD.</td></tr>
+        <tr><td><strong>MIAW / Embedded Service Deployment (ESD) — required checks</strong></td><td>The post-deploy ESD verification steps (BotVersion status, MessagingChannel IsActive, <code>sessionHandlerAsa</code>, <code>areGuestUsersAllowed</code>) are builder's responsibility before handing off to qa.</td></tr>
+        <tr><td><strong>MIAW widget on an Experience Cloud (Aura) site — embedding approach</strong></td><td>The <code>headMarkup</code> vs. LWC component embedding decision and the cache-invalidation behavior are implementation details builder encounters during the build, not design decisions architect needs to pre-specify.</td></tr>
+        <tr><td><strong>ExperienceBundle deploy + publish sequence</strong></td><td>The ordered deploy → community publish → verify live steps are builder's procedural responsibility.</td></tr>
+        <tr><td><strong>Agent activation — CLI first, Setup UI as fallback</strong></td><td>The <code>sf agent publish</code> / <code>sf agent activate</code> flow with its fallback is a release-adjacent task builder performs before handing off to shipper.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>QA only</h3>
+    <table>
+      <thead><tr><th>Section</th><th>Why it's unique</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Continuous evals (AI-Native SDLC)</strong></td><td>Maintaining and growing the eval set (20–50 solution-aligned cases, re-running on every spec change, adding an eval for every production incident) is qa's ongoing responsibility, not a one-time gate.</td></tr>
+        <tr><td><strong>Agentforce / MIAW validation checklist</strong></td><td>The nine-point live-deployment verification table (BotVersion active, MessagingChannel active, ESD deploymentType, site URL returning 200, bootstrap script present) is qa's sign-off checklist, not a general-purpose reference.</td></tr>
+        <tr><td><strong>Final solution documentation — sections you own</strong></td><td>QA is a primary documentation co-author; this section defines which sections it owns (H, J, K.2) and the sequencing protocol with architect (architect writes first, qa appends).</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Shipper only</h3>
+    <table>
+      <thead><tr><th>Section</th><th>Why it's unique</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Parallel vs. ordered deploys</strong></td><td>The decision between all-at-once and component-by-component promotion (and when each is appropriate) is a release strategy choice only shipper needs to reason about.</td></tr>
+        <tr><td><strong>Tiered autonomy &amp; rollback rehearsal (AI-Native SDLC)</strong></td><td>The pre-release rollback readiness check and the tiered deploy authority levels (sandbox freely, staging with confirmation, production gated) are shipper's operating model.</td></tr>
+        <tr><td><strong>PR, merge, and guided promotion (never auto-deploy on merge)</strong></td><td>The "merge does not deploy" rule and the post-merge promotion conversation are shipper's responsibility to enforce and explain.</td></tr>
+        <tr><td><strong>Agentforce release specifics</strong></td><td>The AiAuthoringBundle versioning, activation window, semantic version bump rules, rollback mechanics, and Five9/PSTN routing steps are release-phase concerns shipper owns exclusively.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Sentinel only</h3>
+    <table>
+      <thead><tr><th>Section</th><th>Why it's unique</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Control-band monitoring (AI-Native SDLC)</strong></td><td>The ongoing OWASP posture check schedule, drift detection against the PRD baseline, and the rule that every production incident generates a new eval-set entry are sentinel's continuous responsibilities, not one-time gates.</td></tr>
+        <tr><td><strong>MIAW live-site health checks</strong></td><td>The post-activation site health verification steps (HTTP 200, bootstrap script present, MessagingChannel active) that sentinel runs on a schedule differ from the pre-release checks qa runs once.</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
+</body>
+</html>

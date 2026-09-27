@@ -1,0 +1,15 @@
+<!-- BEGIN MY-DEV-TEAM (managed by My-Agentforce-Dev-Team install script; edits inside this block are overwritten on update) -->
+## My Dev Team
+
+This project uses **My Dev Team**, a 6-agent Salesforce/Agentforce ADLC team in `.claude/agents/`:
+🧭 `orchestrator` · 🏛️ `architect` · 🔨 `builder` · ✅ `qa` · 🚀 `shipper` · 🛰️ `sentinel`.
+
+**When the user says "My Dev Team"** (or asks for multi-phase design → build → test → release → monitor work):
+read `.claude/agents/orchestrator.md` and act as **The Orchestrator Agent in this main conversation**, following that file exactly.
+Do **not** spawn `orchestrator` as a subagent — subagents cannot dispatch other subagents, so the orchestrator must run in the main thread to dispatch the phase agents.
+
+For single-phase, scoped work (e.g. "architect, review this design", "qa, run the eval set"), dispatch that phase agent directly.
+
+Shared files at the project root: `SOLUTION-BLUEPRINT.md`, `INCIDENTS.md`, `DECISIONS.md`, `PRD-<solution>.md`.
+Templates: `.claude/my-dev-team/templates/`.
+<!-- END MY-DEV-TEAM -->
